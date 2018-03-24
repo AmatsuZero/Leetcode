@@ -7,5 +7,11 @@ Your function should return length = 2, and A is now [1,2].
 * */
 
 module.exports = function (sortedArray) {
-
+    if (sortedArray.length === 0) return
+    let j = 0
+    for (let i = 1; i< sortedArray.length; i++) {
+        if (sortedArray[j] !== sortedArray[i])
+            sortedArray[++j] = sortedArray[i]
+    }
+    return j+1
 }
