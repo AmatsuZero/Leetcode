@@ -1,11 +1,12 @@
 const assert = require('assert')
-
+const { describe, it } = require('mocha')
 const twoSum = require('../Array/TwoSum')
 const removeElement = require('../Array/RemoveElement')
 const removeDuplicate = require('../Array/RemoveDuplicatesFromSortedArray')
 const removeDuplicateII = require('../Array/RemoveDuplicatesfromSortedArrayII')
 const plusOne = require('../Array/PlusOne')
 const pascalTri = require('../Array/PascalTriangle')
+const pascalTriII = require('../Array/PascalTriangleII')
 
 describe('Array', () => {
 
@@ -33,7 +34,7 @@ describe('Array', () => {
         })
     })
 
-    describe('帕斯卡三角', () => {
+    describe('#Pascal Triangle', () => {
         it('根据给定行数生成帕斯卡三角', () => {
             assert.deepStrictEqual(pascalTri(5), [
                 [1],
@@ -42,6 +43,9 @@ describe('Array', () => {
                 [1,3,3,1],
                 [1,4,6,4,1]
             ])
+        })
+        it('给定行数，生成帕斯卡三角所在行的数组', () => {
+            assert.deepStrictEqual(pascalTriII(3), [1,3,3,1])
         })
     })
 })
