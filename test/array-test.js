@@ -7,12 +7,25 @@ const removeDuplicateII = require('../Array/RemoveDuplicatesfromSortedArrayII')
 const plusOne = require('../Array/PlusOne')
 const pascalTri = require('../Array/PascalTriangle')
 const pascalTriII = require('../Array/PascalTriangleII')
+const mergeSortedArray = require('../Array/MergeSortedArray')
+const twoSumII = require('../Array/TwoSumII')
+const threeSum = require('../Array/ThreeSum')
 
 describe('Array', () => {
 
-    describe('#Two sum', () => {
+    describe('#K sum', () => {
         it('两数之和', () => {
             assert.deepStrictEqual(twoSum([2, 7, 11, 15], 9), [0,1])
+        })
+        it('两数之和, 返回的结果为所在数组的位置，且有序', () => {
+            assert.deepStrictEqual(twoSumII([2, 7, 11, 15], 9), [1,2])
+        })
+        it('三数之和', () => {
+            const result = new Set([
+                [-1, 0, 1],
+                [-1, -1, 2]
+            ])
+            assert.deepStrictEqual(threeSum([-1, 0, 1, 2, -1, -4]), result)
         })
     })
 
@@ -46,6 +59,13 @@ describe('Array', () => {
         })
         it('给定行数，生成帕斯卡三角所在行的数组', () => {
             assert.deepStrictEqual(pascalTriII(3), [1,3,3,1])
+        })
+    })
+
+    describe('#Merge Sorted Array', () => {
+        it('合并两个有序数组A、B到A', () => {
+            const merged = mergeSortedArray([1,3,6], [2,4,5])
+            assert.deepStrictEqual(merged, [1,2,3,4,5,6])
         })
     })
 })

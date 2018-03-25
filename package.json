@@ -1,8 +1,12 @@
 {
   "name": "leetcode",
   "version": "1.0.0",
-  "description": "",
+  "description": "leetcode JS repositroy",
+  "repository": "https://github.com/AmatsuZero/Leetcode.git",
   "dependencies": {},
+  "engines": {
+    "node": ">= 8.0.0"
+  },
   "devDependencies": {
     "mocha": "^5.0.5"
   },
