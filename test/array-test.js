@@ -10,6 +10,7 @@ const pascalTriII = require('../Array/PascalTriangleII')
 const mergeSortedArray = require('../Array/MergeSortedArray')
 const twoSumII = require('../Array/TwoSumII')
 const threeSum = require('../Array/ThreeSum')
+const threeSumCloset = require('../Array/ThreeSumCloset')
 
 describe('Array', () => {
 
@@ -27,6 +28,9 @@ describe('Array', () => {
             ])
             assert.deepStrictEqual(threeSum([-1, 0, 1, 2, -1, -4]), result)
         })
+        it('给定一个整形数组S和一个具体的值，要求找出在这数组中三个元素的和和这个给定的值最小。input只有一个有效答案',  () => {
+            assert.strictEqual(threeSumCloset([-1, 2, 1, -4], 1), 2)
+        });
     })
 
     describe('#Remove Element', () => {

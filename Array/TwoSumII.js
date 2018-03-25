@@ -10,9 +10,7 @@ module.exports = function (array, target) {
     if (array.length <= 1) return ret
     // 新建一个Map，用来存储元素和Index
     let map = new Map()
-    array.forEach((value, index) => {
-        map.set(value, index)
-    })
+    array.forEach((v, i) => map.set(v, i))
     for (let i = 0; i < array.length; i++) {
         const restVal = target - array[i]
         if (map.has(restVal)) {
