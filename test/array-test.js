@@ -11,6 +11,8 @@ const mergeSortedArray = require('../Array/MergeSortedArray')
 const twoSumII = require('../Array/TwoSumII')
 const threeSum = require('../Array/ThreeSum')
 const threeSumCloset = require('../Array/ThreeSumCloset')
+const fourSum = require('../Array/FourSum')
+const kSum = require('../Array/KSum')
 const LRUCache = require('../Array/LRUCache')
 
 describe('Array', () => {
@@ -28,6 +30,14 @@ describe('Array', () => {
                 [-1, -1, 2]
             ])
             assert.deepStrictEqual(threeSum([-1, 0, 1, 2, -1, -4]), result)
+        })
+        it('四数之和', () => {
+            const ret = [ [ -1, -2, 1, 2 ], [ -1, 0, 0, 1 ], [ -2, 0, 0, 2 ] ]
+            assert.deepStrictEqual(fourSum([1,0,-1,0,-2,2], 0), ret)
+        })
+        it('K Sum', () => {
+            const ret = [ [ -1, -2, 1, 2 ], [ -1, 0, 0, 1 ], [ -2, 0, 0, 2 ] ]
+            assert.deepStrictEqual(kSum([1,0,-1,0,-2,2], 0), ret)
         })
         it('给定一个整形数组S和一个具体的值，要求找出在这数组中三个元素的和和这个给定的值最小。input只有一个有效答案',  () => {
             assert.strictEqual(threeSumCloset([-1, 2, 1, -4], 1), 2)
