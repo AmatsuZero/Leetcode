@@ -1,4 +1,6 @@
 /*
+link: https://leetcode.com/problems/word-frequency/description/
+
 * ##################################################################################
 #
 # Write a bash script to calculate the frequency of each word in a text file words.txt.
@@ -32,7 +34,9 @@ const util = require('util');
 const exec = util.promisify(require('child_process').exec)
 
 module.exports = async function (input) {
-    const { stdout } = await exec(`cat ${input} | tr [:space:] "\\n" | sed '/^$/d' | tr '[:upper:]' '[:lower:]'|sort|uniq -c|sort -nr | awk '{ print $2,$1}'`)
+    const  sh = `cat ${input} | tr [:space:] "\\n" | sed '/^$/d' | tr '[:upper:]' '[:lower:]'|sort|uniq -c|sort -nr | awk '{ print $2,$1}'`
+    const { stdout, stderr } = await exec(sh)
+    if (stderr && stderr.length > 0) console.log('stderr: ', stderr)
     return stdout
 }
 
