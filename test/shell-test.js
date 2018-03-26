@@ -16,8 +16,8 @@ describe('Shell', () => {
     })
 
     describe('#Valid Phone Number', () => {
-        const file = path.join(resourcePath, 'file.txt')
-        it('#Given a text file file.txt that contains list of phone numbers (one per line), write a one liner bash script to print all valid phone numbers', async () => {
+        const file = path.join(resourcePath, 'phoneNumber.txt')
+        it('#Given a text file phoneNumber.txt that contains list of phone numbers (one per line), write a one liner bash script to print all valid phone numbers', async () => {
             const result = await validPhoneNumber(file)
             assert.strictEqual(result, '987-123-4567\n(123) 456-7890')
         })

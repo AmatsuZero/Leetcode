@@ -72,7 +72,7 @@ module.exports = (positiveKey, negativeKey, ascending = true, confidence = Wilso
 
     if (wclib1 < wclib2) {
         return -1 * ret
-    } else if (wclib1 > wclib2){
+    } else if (wclib1 > wclib2) {
         return ret
     } else {
         return 0

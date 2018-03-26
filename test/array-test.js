@@ -11,6 +11,7 @@ const mergeSortedArray = require('../Array/MergeSortedArray')
 const twoSumII = require('../Array/TwoSumII')
 const threeSum = require('../Array/ThreeSum')
 const threeSumCloset = require('../Array/ThreeSumCloset')
+const LRUCache = require('../Array/LRUCache')
 
 describe('Array', () => {
 
@@ -70,6 +71,24 @@ describe('Array', () => {
         it('合并两个有序数组A、B到A', () => {
             const merged = mergeSortedArray([1,3,6], [2,4,5])
             assert.deepStrictEqual(merged, [1,2,3,4,5,6])
+        })
+    })
+
+    describe('#LRU Cache', () => {
+        it('#Normal', () => {
+            const c = new LRUCache(2)
+            c.set(2,1)
+            c.print()
+            c.set(2,2)
+            c.print()
+            c.get(2)
+            c.print()
+            c.set(1,1)
+            c.print()
+            c.set(4,1)
+            c.print()
+            c.get(2)
+            c.print()
         })
     })
 })
