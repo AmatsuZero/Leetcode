@@ -13,7 +13,13 @@ const threeSum = require('../Array/ThreeSum')
 const threeSumCloset = require('../Array/ThreeSumCloset')
 const fourSum = require('../Array/FourSum')
 const kSum = require('../Array/KSum')
-const LRUCache = require('../Array/LRUCache')
+const findMin= require('../Array/FindMinimuminRotatedSortedArray')
+const flower = require('../Array/CanPlaceFlowers')
+const largestRect = require('../Array/LargestRectangleInHistogram')
+const maxRect = require('../Array/MaximalRectangle')
+const isPalindrome = require('../Array/PalindromeNumber')
+const searchMatrix = require('../Array/Search2DMatrix')
+const searchRange = require('../Array/SearchForRange')
 
 describe('Array', () => {
 
@@ -84,21 +90,54 @@ describe('Array', () => {
         })
     })
 
-    describe('#LRU Cache', () => {
-        it('#Normal', () => {
-            const c = new LRUCache(2)
-            c.set(2,1)
-            c.print()
-            c.set(2,2)
-            c.print()
-            c.get(2)
-            c.print()
-            c.set(1,1)
-            c.print()
-            c.set(4,1)
-            c.print()
-            c.get(2)
-            c.print()
+   describe('#Find Minimum in Rotated Sorted Array', () => {
+       it('在一个轮转了的排序数组里面找到最小值', () => {
+           assert.strictEqual(findMin([4,5,6,7,0,1,2]), 0)
+       })
+   })
+
+    describe('#Can Place Flowers', () => {
+        it('种花问题', () => {
+            assert.ok(flower([1,0,0,0,1], 2) === false)
+        })
+    })
+
+    describe('#Largest Rectangle in Histogram' ,() => {
+        it('最大面积问题', () => {
+            assert.strictEqual(largestRect([0,10]), 10)
+        })
+        it('矩阵最大面积问题', () => {
+            const matrix = [
+                [1,0,1,0,0],
+                [1,0,1,1,1],
+                [1,1,1,1,1],
+                [1,0,0,1,0]
+            ]
+            assert.strictEqual(maxRect(matrix), 6)
+        })
+    })
+
+    describe('#Is Palindrome', () => {
+        it('是否是回文数', () => {
+            assert.ok(isPalindrome(101))
+        })
+    })
+
+    describe('#Search Matrix', () => {
+        it('矩阵是否包含某值', () => {
+            const matrix = [
+                [1,  3,  5, 7],
+                [10, 11, 16, 20],
+                [23, 30, 34, 50]
+            ]
+            assert.ok(searchMatrix(matrix, 3))
+        })
+    })
+
+    describe('#Search Range', () => {
+        it('范围搜索', () => {
+            const array = [5, 7, 7, 8, 8, 10]
+            assert.deepStrictEqual(searchRange(array, 8), [3,4])
         })
     })
 })

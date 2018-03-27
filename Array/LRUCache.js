@@ -26,7 +26,8 @@ class Node {
     constructor(k, v) {
         this.key = k
         this.value = v
-        this.next = this.prev = null
+        this.next = null
+        this.prev = null
     }
 }
 
@@ -99,6 +100,13 @@ class DoubleLinkedList {
 
     last() {
         return this._pTail
+    }
+
+    destroy() {
+        while (this._pHead !== null) {
+            const p = this._pHead
+            this._pHead = p.next
+        }
     }
 
     display() {
