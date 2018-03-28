@@ -11,9 +11,9 @@ For example, given numRows = 5, Return
 * */
 
 module.exports = function (numRows) {
-    let triangle = Array(numRows)
+    let triangle = new Array(numRows)
     for (let i = 0; i< numRows; i++) {
-        triangle[i] = Array(i+1)
+        triangle[i] = new Array(i+1)
         triangle[i][0] = 1
         triangle[i][i] = 1
         for (let j = 1; j < i; j++)

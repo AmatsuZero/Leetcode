@@ -32,7 +32,7 @@ const traverse = (ret, root, level) => {
 }
 
 module.exports = (root) => {
-    const ret = Array(maxDepth(root))
+    const ret = new Array(maxDepth(root))
     if (ret.length === 0) return ret
     traverse(ret,root,0)
     return ret

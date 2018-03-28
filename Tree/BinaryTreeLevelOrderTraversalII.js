@@ -33,7 +33,7 @@ const DFS = (ret, level, root) => {
 }
 
 module.exports = (root) => {
-    const ret = Array(maxDepth(root))
+    const ret = new Array(maxDepth(root))
     if (ret.length === 0) return ret
     DFS(ret,ret.length-1, root)
     return ret

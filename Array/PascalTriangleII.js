@@ -5,7 +5,7 @@ Note:
 Could you optimize your algorithm to use only O(k) extra space?
 * */
 module.exports = function (k) {
-    let results = Array(k+1).fill(1)
+    let results = new Array(k+1).fill(1)
     for (let i = 0; i < k+1; i++) {
         for (let j = i - 1; j>= 1; j--) {
             results[j] = results[j] + results[j-1]

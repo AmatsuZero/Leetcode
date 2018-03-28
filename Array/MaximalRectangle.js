@@ -20,7 +20,7 @@ module.exports = (matrix) => {
     const m = matrix.length
     const n = matrix[0].length
     let maxArea = 0
-    const heights = Array(m).fill(Array(n).fill(0))
+    const heights = new Array(m).fill(Array(n).fill(0))
     for (let i = 0; i < m; i++) {
         for (let j = 0; j < n; j++) {
             if (matrix[i][j] === 1) {

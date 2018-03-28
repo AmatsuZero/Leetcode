@@ -32,7 +32,7 @@ const zigzag = (ret, root, level) => {
 }
 
 module.exports = (root) => {
-    const ret = Array(maxDepth(root))
+    const ret = new Array(maxDepth(root))
     zigzag(ret, root, 0)
     for (let i = 1; i < ret.length; i+=2) {
         ret[i].reverse()
