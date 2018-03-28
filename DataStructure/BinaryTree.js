@@ -6,12 +6,10 @@ class TreeNode {
 }
 
 class BinaryTree {
-    constructor(data, customBuildTreeMethod = null) {
-        this.root = 1
+    constructor(customBuildTreeMethod = null, array1, array2) {
+        this.root = null
         if (customBuildTreeMethod !== null)
-            customBuildTreeMethod(this.root, data)
-        else
-            data.forEach(val => this.insert(val))
+            this.root = customBuildTreeMethod(array1, array2)
     }
 
     insert(val) {
@@ -35,6 +33,10 @@ class BinaryTree {
             else
                 this._insert(node.right, newNode)
         }
+    }
+
+    get height() {
+        return BinaryTree.height(this.root)
     }
 
     remove(val) {
@@ -67,7 +69,7 @@ class BinaryTree {
     }
 
     search(val) {
-        this._search(this.root, val)
+       return this._search(this.root, val)
     }
 
     _search(node, val) {
@@ -77,12 +79,24 @@ class BinaryTree {
         else return true
     }
 
-    max() {
+    revert() {
+        this.root = BinaryTree.invert(this.root)
+    }
+
+    get max() {
         return BinaryTree.maxNode(this.root)
     }
 
-    min() {
+    get min() {
         return BinaryTree.minNode(this.root)
+    }
+
+    inOrderTraverse(cb) {
+        BinaryTree.inOrderTraverse(this.root, cb)
+    }
+
+    preOrderTraverse(cb) {
+        BinaryTree.preOrderTraverse(this.root, cb)
     }
 
     static maxNode(node) {
@@ -113,6 +127,25 @@ class BinaryTree {
         cb(node.val)
         this.preOrderTraverse(node.left, cb)
         this.preOrderTraverse(node.right, cb)
+    }
+
+    static invert(root) {
+        if (root === null) return root
+        else {
+            const temp = root.left
+            root.left = root.right
+            root.right = temp
+        }
+        this.invert(root.left)
+        this.invert(root.right)
+        return root
+    }
+
+    static height(root) {
+        if (root === null) return 0
+        const left = this.height(root.left)
+        const right = this.height(root.right)
+        return Math.max(left, right) + 1
     }
 }
 
