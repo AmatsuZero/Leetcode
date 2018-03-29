@@ -8,8 +8,8 @@ class Queue {
         this.items.push(element)
     }
 
-    dequeue(element) {
-        this.items.shift()
+    dequeue() {
+        return this.items.shift()
     }
 
     get front() {
@@ -24,9 +24,11 @@ class Queue {
        return this.items.length
     }
 
-    isEmpty() {
+    get isEmpty() {
         return this.items.length === 0
     }
+
+
 }
 
 module.exports = Queue
