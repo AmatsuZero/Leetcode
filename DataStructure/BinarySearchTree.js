@@ -33,10 +33,10 @@ class BinarySearchTree {
     }
 
     get height() {
-        return BinarySearchTree.height(this._root)
+        return this._height(this._root)
     }
 
-    static height(root) {
+    _height(root) {
         if (root === null) return -1
         const left = this.height(root.left)
         const right = this.height(root.right)
@@ -95,10 +95,10 @@ class BinarySearchTree {
     }
 
     get min() {
-        return BinarySearchTree.minNode(this._root)
+        return this.minNode(this._root)
     }
 
-    static minNode(node) {
+    minNode(node) {
         let current = node
         while (current != null && current.left != null) {
             current = current.left
@@ -107,10 +107,10 @@ class BinarySearchTree {
     }
 
     get max() {
-        return BinarySearchTree.maxNode(this._root)
+        return this.maxNode(this._root)
     }
 
-    static maxNode(node) {
+    maxNode(node) {
         let current = node
         while (current != null && current.right != null) {
             current = current.right
@@ -152,7 +152,7 @@ class BinarySearchTree {
             return node
         }
         // case 3
-        const aux = BinarySearchTree.minNode(node.right)
+        const aux = this.minNode(node.right)
         node.val = aux.key
         node.right = this.removeNode(node.right, aux.key)
         return node

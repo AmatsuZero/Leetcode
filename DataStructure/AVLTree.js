@@ -58,16 +58,16 @@ class AVLTree extends BinarySearchTree {
      * @param node Node<T>
      */
     static rotationLR(node) {
-        node.left = AVLTree.rotationRR(node.left);
-        return AVLTree.rotationLL(node);
+        node.left = this.rotationRR(node.left);
+        return this.rotationLL(node);
     }
     /**
      * Right left case: rotate right then left
      * @param node Node<T>
      */
     static rotationRL(node) {
-        node.right = AVLTree.rotationLL(node.right);
-        return AVLTree.rotationRR(node);
+        node.right = this.rotationLL(node.right);
+        return this.rotationRR(node);
     }
 
     static balanceType(node) {
