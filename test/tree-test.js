@@ -10,6 +10,7 @@ const reverseLevelOrder = require('../Tree/BinaryTreeLevelOrderTraversalII')
 const zigzag = require('../Tree/ZigzagTraversal')
 const isSymmetricTree = require('../Tree/SymmetricTree')
 const hasPathSum = require('../Tree/PathSum')
+const hasPathSumII = require('../Tree/PathSumII')
 const toBST = require('../Tree/SortedListToBST')
 const SortedList = require('../DataStructure/SortedLinkedList')
 const TierTree = require('../DataStructure/TierTree')
@@ -80,6 +81,12 @@ describe('#Tree', () => {
         const inorder = [7,11,2,4,5,13,8,4,1]
         tree = new BinaryTree(preInBuildTree, preorder, inorder)
         assert.isOk(hasPathSum(tree.root, 22))
+    })
+    it('是否能求得指定和II', () => {
+        const preorder = [5,4,11,7,2,8,13,4,1]
+        const inorder = [7,11,2,4,5,13,8,4,1]
+        tree = new BinaryTree(preInBuildTree, preorder, inorder)
+        assert.isOk(hasPathSumII(tree.root, 22))
     })
     it('有序链表转搜索二叉树', () => {
         const sortedList = SortedList.from([5,4,11,7,2,8,13,4,1])

@@ -134,7 +134,7 @@ class RBTree extends AVLTree {
                     continue
                 } else if (parent.right === node) { // Case 2条件：叔叔是黑色，且当前节点是右孩子
                     let tmp
-                    root = RBTree.leftRotate(root, parent)
+                    root = this.leftRotate(root, parent)
                     tmp = parent
                     parent = node
                     node = tmp

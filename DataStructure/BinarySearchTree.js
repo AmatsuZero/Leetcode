@@ -157,6 +157,16 @@ class BinarySearchTree {
         node.right = this.removeNode(node.right, aux.key)
         return node
     }
+
+    static valid(node, minVal, maxVal) {
+        if(!node) return true
+        if(node.val <= minVal || node.val >= maxVal) return false
+        return this.valid(node.left, minVal, node.val) && this.valid(node.right, node.val, maxVal)
+    }
+
+    static isValidBST(root) {
+        return this.valid(root, -Infinity, Infinity)
+    }
 }
 
 module.exports = BinarySearchTree
