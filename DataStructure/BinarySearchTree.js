@@ -158,6 +158,52 @@ class BinarySearchTree {
         return node
     }
 
+    static recover(root) {
+    	let cur, pre, p1, p2, preCur,
+		    found = false
+	    if (!root) return
+	    cur = root
+	    while (cur) {
+    		if (!cur.left) {
+    			//記錄p1和p2
+			    if (preCur && preCur.val > cur.val) {
+			    	if (!found) {
+			    		p1 = preCur
+					    found = true
+				    }
+				    p2 = cur
+			    }
+			    preCur = cur
+			    cur = cur.right
+		    } else {
+    			pre = cur.left
+			    while (pre.right && pre.right !== cur)
+			      pre = pre.right
+			    if (!pre.right) {
+    				pre.right = cur
+				    cur = cur.left
+			    } else {
+    				//記錄p1和p2
+				    if (preCur.val > cur.val) {
+				    	if (!found) {
+				    		p1 = preCur
+						    found = true
+					    }
+					    p2 = cur
+				    }
+				    preCur = cur
+				    pre.right = null
+				    cur = cur.right
+			    }
+		    }
+	    }
+	    if (p1 && p2) {
+    		const tmp = p1.val
+		    p1.val = p2.val
+		    p2.val = tmp
+	    }
+    }
+
     static valid(node, minVal, maxVal) {
         if(!node) return true
         if(node.val <= minVal || node.val >= maxVal) return false

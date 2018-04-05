@@ -109,12 +109,14 @@ class DoubleLinkedList {
         }
     }
 
-    display() {
-        let p = this._pHead
-        while (p !== null) {
-            console.log(`(${p.key}, ${p.value})`)
-            p = p.next
-        }
+    toString() {
+    	let desc = ""
+	    let p = this._pHead
+	    while (p !== null) {
+		    desc += `(${p.key}, ${p.value}\n)`
+		    p = p.next
+	    }
+	    return desc
     }
 }
 
@@ -155,8 +157,8 @@ class LRUCache {
         return -1
     }
 
-    print() {
-        this._cacheList.display()
+    toString() {
+    	return this._cacheList.toString()
     }
 }
 

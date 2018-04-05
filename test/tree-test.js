@@ -15,6 +15,8 @@ const toBST = require('../Tree/SortedListToBST')
 const SortedList = require('../DataStructure/SortedLinkedList')
 const TierTree = require('../DataStructure/TierTree')
 const RBTree = require('../DataStructure/RBTree')
+const TreePath = require('../Tree/BinaryTreePath')
+const SumToLeaf = require('../Tree/SumRootToLeafNumbers')
 
 describe('#Tree', () => {
     let tree
@@ -23,7 +25,6 @@ describe('#Tree', () => {
         const inorder = [9,3,15,20,7]
         tree = new BinaryTree(preInBuildTree, preorder, inorder)
     })
-
     it('树最大深度', () => {
         assert.strictEqual(maxDepth(tree.root), 3)
     })
@@ -90,9 +91,21 @@ describe('#Tree', () => {
     })
     it('有序链表转搜索二叉树', () => {
         const sortedList = SortedList.from([5,4,11,7,2,8,13,4,1])
-        let tree = toBST(sortedList.head)
+        tree = toBST(sortedList.head)
         console.log(levelOrder(tree))
     })
+  it('Tree Path', () => {
+	  const preorder = [5,4,11,7,2,8,13,4,1]
+	  const inorder = [7,11,2,4,5,13,8,4,1]
+	  tree = new BinaryTree(preInBuildTree, preorder, inorder)
+    assert.sameDeepMembers([ '5->4->11->7', '5->4->11->2', '5->8->13', '5->8->4->1' ], TreePath(tree.root))
+  })
+  it('出所有路径表示的数值的和', () => {
+	  const preorder = [5,4,11,7,2,8,13,4,1]
+	  const inorder = [7,11,2,4,5,13,8,4,1]
+	  tree = new BinaryTree(preInBuildTree, preorder, inorder)
+    console.log(SumToLeaf(tree.root))
+  })
 })
 
 describe('#字典树', () => {
