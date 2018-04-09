@@ -1,4 +1,4 @@
-const assert = require('assert')
+const { assert } = require('chai')
 const {describe, it} = require('mocha')
 const {
     quickSort,
@@ -10,6 +10,7 @@ const {
     heapSort
 } = require('../Sort/CommonSort')
 const wilsonRank = require('../Sort/WilsonRank')
+const permutation = require("../Sort/FullPermutation")
 
 describe('#Wilson Rank', () => {
     it('#Sort by Bernoulli Distribution', () => {
@@ -68,4 +69,8 @@ describe('#Commmond Sort', () => {
         const array = [85,24,63,45,17,31,96,50]
         assert.deepStrictEqual(heapSort(array), [17,24,31,45,50,63,85,96])
     });
+    it("#全排序", () => {
+        const input = [1,5,9]
+        console.log(permutation(input))
+    })
 })
