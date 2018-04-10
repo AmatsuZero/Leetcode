@@ -1,7 +1,7 @@
 // Link: http://www.ruanyifeng.com/blog/2011/04/quicksort_in_javascript.html
-const quickSort = (array) => {
+const quickSort = array => {
     if (array.length <= 1) return array
-    const pivotIndex = Math.floor(array.length/2)
+    const pivotIndex = ~~(array.length/2)
     const pivot = array.splice(pivotIndex, 1)[0]
     let left = []
     let right = []
@@ -22,7 +22,7 @@ const swapAt = (array, x, y) => {
 }
 
 // 双向冒泡
-const bubbleSort = (array) => {
+const bubbleSort = array => {
     if (array.length <= 1) return array
     let low = 0
     let high = array.length - 1
