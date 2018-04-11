@@ -8,11 +8,10 @@ class CircularLinkedList extends LinkedList {
         if (this.head === null)
             this.head = node
          else {
-            current = this.nodeAt(this.size - 1)
+            current = this.nodeAt(this.count - 1)
             current.next = node
         }
         node.next = this.head
-        this.count++
     }
 
     insert(index, element) {
@@ -26,7 +25,7 @@ class CircularLinkedList extends LinkedList {
                     node.next = this.head
                 } else {
                     node.next = current;
-                    current = this.nodeAt(this.size)
+                    current = this.nodeAt(this.count)
                     // update last element
                     this.head = node
                     current.next = this.head
@@ -36,7 +35,6 @@ class CircularLinkedList extends LinkedList {
                 node.next = previous.next
                 previous.next = node
             }
-            this.count++
             return true
         }
         return false
@@ -46,11 +44,11 @@ class CircularLinkedList extends LinkedList {
         if (index >= 0 && index < this.count) {
             let current = this.head
             if (index === 0) {
-                if (this.size === 1) {
+                if (this.count === 1) {
                     this.head = undefined
                 } else {
                     const removed = this.head
-                    current = this.nodeAt(this.size - 1)
+                    current = this.nodeAt(this.count - 1)
                     this.head = this.head.next
                     current.next = this.head
                     current = removed
@@ -61,7 +59,6 @@ class CircularLinkedList extends LinkedList {
                 current = previous.next
                 previous.next = current.next
             }
-            this.count--
             return current.element
         }
         return undefined

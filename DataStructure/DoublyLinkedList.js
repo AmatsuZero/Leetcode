@@ -3,7 +3,16 @@ const { LinkedList, LinkedListNode } = require('./LinkedList')
 class DoublyLinkedListNode extends LinkedListNode {
     constructor(element) {
         super(element)
-        this.prev = null
+        this.prevKey = {key:"前驱"}
+        this.weakMap = new WeakMap()
+    }
+
+    get prev() {
+        this.weakMap.get(this.prevKey)
+    }
+
+    set prev(val) {
+        this.weakMap.set(this.prevKey, val)
     }
 }
 
@@ -23,7 +32,6 @@ class DoublyLinkedList extends LinkedList {
             node.prev = this.tail
             this.tail = node
         }
-        this.count++
     }
 
     insert(position, element) {
@@ -55,7 +63,6 @@ class DoublyLinkedList extends LinkedList {
             current.prev = node
             node.prev = previous
         }
-        this.count++
         return true
     }
 
@@ -81,7 +88,6 @@ class DoublyLinkedList extends LinkedList {
             previous.next = current.next
             current.next.prev = previous
         }
-        this.count--
         return current.element
     }
 
