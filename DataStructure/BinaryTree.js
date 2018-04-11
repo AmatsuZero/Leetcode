@@ -1,7 +1,25 @@
 class TreeNode {
     constructor(val) {
         this.val = val
-        this.left = this.right = null
+        this.weakMap = new WeakMap() // 利用WeakMaP，防止内存泄漏
+        this.leftKey = {left: "left"}
+        this.rightKey = {right: "right"}
+    }
+
+    set left(val) {
+        this.weakMap.set(this.leftKey, val)
+    }
+
+    set right(val) {
+        this.weakMap.set(this.rightKey, val)
+    }
+
+    get left() {
+        return this.weakMap.get(this.leftKey)
+    }
+
+    get right() {
+        return this.weakMap.get(this.rightKey)
     }
 
     toString() {

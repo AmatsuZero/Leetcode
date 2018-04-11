@@ -124,6 +124,29 @@ class LinkedList {
         data.forEach(value => list.append(value))
         return list
     }
+
+    // 判断链表是否有环，并返回重合开始的节点
+    hasCircle() {
+        if (!this.head || !this.head.next)
+            return null
+        let fast = this.head, // 两个指针，一个一次走两步，一个一次走一步
+            slow = this.head
+        while (fast.next && fast.next.next) {
+            fast = fast.next.next
+            slow = slow.next
+            if (slow === fast) {// 重合的时候，fast的移动距离是slow的两倍
+                slow = this.head
+                while (slow !== fast) {
+                    fast = fast.next
+                    slow = slow.next
+                }
+                return slow
+            }
+        }
+        return null
+    }
+
+
 }
 
 module.exports = {
