@@ -8,6 +8,13 @@ const MaxProductSubArr = require("../DynamicPlanning/MaxProdutSubArray")
 const Triangle = require("../DynamicPlanning/Triangle")
 const uniqueBSTCount = require("../DynamicPlanning/UniqueBinarySearchTrees")
 const uniqueBSTArr = require("../DynamicPlanning/UniqueBinarySearchTreesII")
+const oneWayBridge = require("../DynamicPlanning/OneWayBridge")
+const MinChanges = require("../DynamicPlanning/MinChanges")
+const Package = require("../DynamicPlanning/BackPack")
+const PackageII = require("../DynamicPlanning/BackPackII")
+const PackageIII = require("../DynamicPlanning/BackPackIII")
+const PackageIV = require("../DynamicPlanning/BackPackIV")
+const PackageV = require("../DynamicPlanning/BackPackV")
 
 describe('#动态规划', () => {
     it('#合唱团问题：求最大乘积', () => {
@@ -38,5 +45,30 @@ describe('#动态规划', () => {
     })
     it("根据数字生成BST数组", () => {
         uniqueBSTArr(3).forEach(val => console.log(val.toString()))
+    })
+    it("独木桥", () => {
+        assert.deepEqual(oneWayBridge(10, [2,4,9]), {
+            maxTime: 9,
+            minTime: 4
+        })
+    })
+    it("最少找零问题", () => {
+        assert.strictEqual(MinChanges([1,3,5], 11), 3)
+    })
+    it("背包问题", () => {
+        assert.strictEqual(Package([2,3,5,7],11), 10)
+        assert.strictEqual(Package([2,3,5,7],12), 12)
+    })
+    it("背包问题II", () => {
+        assert.strictEqual(PackageII([2,3,5,7],[1,5,2,4],10), 9)
+    })
+    it("背包问题III", () => {
+        assert.strictEqual(PackageIII(10,[2,3,5,7],[1,5,2,4]), 15)
+    })
+    it("背包问题IV", () => {
+        assert.strictEqual(PackageIV([1,2,4],4), 6)
+    })
+    it("背包问题V", () => {
+        assert.strictEqual(PackageV([1,2,3,3,7],7), 2)
     })
 })

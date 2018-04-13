@@ -35,8 +35,10 @@ const isUnaryOperator = char => /^[√%!]$/.test(char)
 const isBrackets = char => /^[()]$/.test(char)
 const isNumber = char => /^-?\d+\.\d+$|^-?\d+$/.test(char)
 const splitExp = express => {
-    express = express.replace(/[a-zA-Z]/g, '').replace(/([\d%!])-(\d√)/g, '$1 - $2').replace(/([+\-*\/^])-(\d)/g, '$1 -$2')
-    return (/^[+*\/!^%]|\d\(|[\d)]√|%[\d(]|![\d(]|%%|[+\-*\/^]{2,}|[+\-*\/√^]$/.test(express))
+    express = express.replace(/[a-zA-Z]/g, '')
+        .replace(/([\d%!])-(\d√)/g, '$1 - $2')
+        .replace(/([+\-*\/^])-(\d)/g, '$1 -$2')
+    return /^[+*\/!^%]|\d\(|[\d)]√|%[\d(]|![\d(]|%%|[+\-*\/^]{2,}|[+\-*\/√^]$/.test(express)
         ? null
         : express.match(/(-?(?:\d+\.?\d*|-?\.\d*))|[()+\-*\/√!^%]/gi)
 }
