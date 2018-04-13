@@ -3,17 +3,17 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://github.com/AmatsuZero/Leetcode.git/categories/</loc>
+    <loc>https://amatsuzero.github.io/Leetcode/categories/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://github.com/AmatsuZero/Leetcode.git/</loc>
+    <loc>https://amatsuzero.github.io/Leetcode/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://github.com/AmatsuZero/Leetcode.git/tags/</loc>
+    <loc>https://amatsuzero.github.io/Leetcode/tags/</loc>
     <priority>0</priority>
   </url>
   

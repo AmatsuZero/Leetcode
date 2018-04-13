@@ -5,7 +5,7 @@
   "repository": "https://github.com/AmatsuZero/Leetcode.git",
   "scripts": {
     "server": "cd DocEditor && hugo server --theme=hyde --buildDrafts",
-    "deploy": "cd DocEditor && hugo --theme=hyde --baseUrl='https://github.com/AmatsuZero/Leetcode.git'"
+    "deploy": "cd DocEditor && hugo --theme=hyde"
   },
   "dependencies": {},
   "engines": {

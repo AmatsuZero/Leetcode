@@ -1,4 +1,4 @@
-baseURL = "https://github.com/AmatsuZero/Leetcode.git"
+baseURL = "https://amatsuzero.github.io/Leetcode/"
 languageCode = "zh-CN"
 title = "LeetCode 分析"
 publishDir="../docs"
