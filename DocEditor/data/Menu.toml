@@ -1,0 +1,13 @@
+[about]
+    Name = "关于我"
+    URL = "content/about"
+
+[posts]
+    Name = "算法相关"
+    Title = "算法"
+    URL = "content/algorithm"
+
+[tags]
+    Name = "Tags"
+    Title = "Show list of tags"
+    URL = "/tags"

@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Categories on LeetCode 分析</title>
+    <title>Categories on 面试题目分析</title>
     <link>https://amatsuzero.github.io/Leetcode/categories/</link>
-    <description>Recent content in Categories on LeetCode 分析</description>
+    <description>Recent content in Categories on 面试题目分析</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
+    <managingEditor>jzh16s@hotmail.com (姜振华)</managingEditor>
+    <webMaster>jzh16s@hotmail.com (姜振华)</webMaster>
     
 	<atom:link href="https://amatsuzero.github.io/Leetcode/categories/index.xml" rel="self" type="application/rss+xml" />
     

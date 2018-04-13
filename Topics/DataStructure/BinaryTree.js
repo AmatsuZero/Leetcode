@@ -22,6 +22,30 @@ class TreeNode {
         return this.weakMap.get(this.rightKey)
     }
 
+    get nextInOrder() {
+        if (this.right) {
+            let node = this.right
+            while (node.left)
+                node = node.left
+            return node
+        } else {
+            let pNode = this
+            while (pNode.next) {
+                const parent = pNode.next
+                if (parent.left === pNode)
+                    return parent
+                pNode = pNode.next
+            }
+        }
+        return null
+    }
+
+    swap() {
+        const t = this.left
+        this.left = this.right
+        this.right = t
+    }
+
     toString() {
         const printer = new TreePrinter(this, 1, 0)
         return printer.out
@@ -111,7 +135,7 @@ class TreePrinter {
 class BinaryTree {
     constructor(customBuildTreeMethod = null, array1, array2) {
         this.root = null
-        if (customBuildTreeMethod !== null)
+        if (customBuildTreeMethod)
             this.root = customBuildTreeMethod(array1, array2)
     }
 
@@ -126,12 +150,12 @@ class BinaryTree {
 
     _insert(node, newNode) {
         if (newNode.val < node.val) {
-            if (node.left === null)
+            if (!node.left)
                 node.left = newNode
             else
                 this._insert(node.left, newNode)
         } else {
-            if (node.right === null)
+            if (!node.right)
                 node.right = newNode
             else
                 this._insert(node.right, newNode)
@@ -153,11 +177,11 @@ class BinaryTree {
         } else if (key > node.val) {
             node.right = this._remove(node.right, key)
         } else {
-            if (node.left === null && node.right === null) {
+            if (!node.left && !node.right) {
                 node = null
-            } else if (node.left === null) {
+            } else if (!node.left) {
                 node = node.right
-            } else if (node.right === null) {
+            } else if (!node.right) {
                 node = node.left
             } else {// 有两个子节点
                 // 首先加入辅助节点，同时找寻右子节点中的最小节点
@@ -176,10 +200,19 @@ class BinaryTree {
     }
 
     _search(node, val) {
-        if (node === null) return false
+        if (!node) return false
         else if (val < node.val) return this._search(node.left, val)
         else if (val > node.val) return this._search(node.right, val)
         else return true
+    }
+
+    mirror() {
+        if (!this.root) return
+        this.root.swap()
+        if (this.root.left)
+            this.root.left.swap()
+        if (this.root.right)
+            this.root.right.swap()
     }
 
     revert() {
@@ -203,37 +236,37 @@ class BinaryTree {
     }
 
     static maxNode(node) {
-        if (node !== null) {
-            while (node !== null && node.right !== null) node = node.right
+        if (node) {
+            while (node&& node.right) node = node.right
             return node.val
         }
         return node.val
     }
 
     static minNode(node) {
-        if (node !== null) {
-            while (node !== null && node.left !== null) node = node.left
+        if (node) {
+            while (node && node.left) node = node.left
             return node.val
         }
         return node.val
     }
 
     static inOrderTraverse(node, cb) {
-        if (node === null) return
+        if (!node) return
         this.inOrderTraverse(node.left, cb)
-        cb(node.val)
+        cb(node)
         this.inOrderTraverse(node.right, cb)
     }
 
     static preOrderTraverse(node, cb) {
-        if (node === null) return
-        cb(node.val)
+        if (!node) return
+        cb(node)
         this.preOrderTraverse(node.left, cb)
         this.preOrderTraverse(node.right, cb)
     }
 
     static invert(root) {
-        if (root === null) return root
+        if (!root) return root
         else {
             const temp = root.left
             root.left = root.right
@@ -245,7 +278,7 @@ class BinaryTree {
     }
 
     static height(root) {
-        if (root === null) return 0
+        if (!root) return 0
         const left = this.height(root.left)
         const right = this.height(root.right)
         return Math.max(left, right) + 1
