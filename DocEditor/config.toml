@@ -1,0 +1,4 @@
+baseURL = "https://github.com/AmatsuZero/Leetcode.git"
+languageCode = "zh-CN"
+title = "LeetCode 分析"
+publishDir="../docs"

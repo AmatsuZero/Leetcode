@@ -4,8 +4,8 @@
   "description": "leetcode JS repositroy",
   "repository": "https://github.com/AmatsuZero/Leetcode.git",
   "scripts": {
-    "server": "cd docs && hugo server --theme=hyde --buildDrafts",
-    "deploy": "cd docs && hugo --theme=hyde --baseUrl='https://github.com/AmatsuZero/Leetcode.git'"
+    "server": "cd DocEditor && hugo server --theme=hyde --buildDrafts",
+    "deploy": "cd DocEditor && hugo --theme=hyde --baseUrl='https://github.com/AmatsuZero/Leetcode.git'"
   },
   "dependencies": {},
   "engines": {
