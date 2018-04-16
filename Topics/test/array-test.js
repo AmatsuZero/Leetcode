@@ -20,6 +20,9 @@ const maxRect = require('../Array/MaximalRectangle')
 const isPalindrome = require('../Array/PalindromeNumber')
 const searchMatrix = require('../Array/Search2DMatrix')
 const searchRange = require('../Array/SearchForRange')
+const rpn = require("../Array/EvaluateRPN")
+const anagram = require("../Array/ValidAnagram")
+const continousSubArray = require("../Array/ShortestUnsortedContinuousSubarray")
 
 describe('Array', () => {
 
@@ -138,6 +141,25 @@ describe('Array', () => {
         it('范围搜索', () => {
             const array = [5, 7, 7, 8, 8, 10]
             assert.deepStrictEqual(searchRange(array, 8), [3,4])
+        })
+    })
+
+    describe("#逆波兰表达式", () => {
+        it("求值", () => {
+            assert.strictEqual(rpn(["2", "1", "+", "3", "*"]), 9)
+            assert.strictEqual(rpn(["4", "13", "5", "/", "+"]), 6)
+        })
+    })
+
+    describe("#回文字符串", () => {
+        it("验证是否是回文字符串", () => {
+            assert.ok(anagram("anagram", "nagaram"))
+        })
+    })
+
+    describe("#子数组查找", () => {
+        it("需要排序的子数组长度", () => {
+            assert.ok(continousSubArray([2, 6, 4, 8, 10, 9, 15]), 5)
         })
     })
 })

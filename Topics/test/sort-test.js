@@ -24,7 +24,7 @@ describe('#Wilson Rank', () => {
             {name: "grape", up: 48, down: 89},
             {name: "honeydew", up: 65, down: 26}
         ]
-        assert.deepStrictEqual(fruits, [
+        assert.sameMembers(fruits, [
             {name: "apple", up: 77, down: 14},
             {name: "cherry", up: 28, down: 6},
             {name: "honeydew", up: 65, down: 26},

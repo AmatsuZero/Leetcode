@@ -139,71 +139,8 @@ class BinaryTree {
             this.root = customBuildTreeMethod(array1, array2)
     }
 
-    insert(val) {
-        if (val === null) return
-        const node = new TreeNode(val)
-        if (this.root === null)
-            this.root = node
-        else
-            this._insert(this.root, node)
-    }
-
-    _insert(node, newNode) {
-        if (newNode.val < node.val) {
-            if (!node.left)
-                node.left = newNode
-            else
-                this._insert(node.left, newNode)
-        } else {
-            if (!node.right)
-                node.right = newNode
-            else
-                this._insert(node.right, newNode)
-        }
-    }
-
     get height() {
         return BinaryTree.height(this.root)
-    }
-
-    remove(val) {
-        this._remove(this.root, val)
-    }
-
-    _remove(node, key) {
-        if (node === this.root) return null
-        if (key < node.val) {
-            node.left = this._remove(node.left, key)
-        } else if (key > node.val) {
-            node.right = this._remove(node.right, key)
-        } else {
-            if (!node.left && !node.right) {
-                node = null
-            } else if (!node.left) {
-                node = node.right
-            } else if (!node.right) {
-                node = node.left
-            } else {// 有两个子节点
-                // 首先加入辅助节点，同时找寻右子节点中的最小节点
-                // 并把当前节点替换为右子节点中的最小节点
-                // 同时为了避免节点重复，移除右子节点中的最小节点
-                const aux = BinaryTree.minNode(node.right)
-                node.val = aux.val
-                node.right = this._remove(node.right, aux.val)
-            }
-        }
-        return node
-    }
-
-    search(val) {
-       return this._search(this.root, val)
-    }
-
-    _search(node, val) {
-        if (!node) return false
-        else if (val < node.val) return this._search(node.left, val)
-        else if (val > node.val) return this._search(node.right, val)
-        else return true
     }
 
     mirror() {
@@ -219,12 +156,55 @@ class BinaryTree {
         this.root = BinaryTree.invert(this.root)
     }
 
+    /*
+    * 是否包含子树
+    * */
+    contain(root2) {
+        let hasSubtree = false
+        if (!this.root && !root2) {
+            // 判断根节点是否包含子树
+            if (this.root.val === root2.val) {
+                hasSubtree = BinaryTree.contains(this.root, root2)
+            }
+            // 判断左孩子
+            if (!hasSubtree)
+                hasSubtree = BinaryTree.contains(this.root.left, root2)
+            // 判断右孩子
+            if (!hasSubtree)
+                hasSubtree = BinaryTree.contains(this.root.r, root2)
+        }
+        return hasSubtree
+    }
+
+    static contains(root1, root2) {
+        // 临界条件
+        if (!root2) return true // 树2遍历结束
+        if (!root1) return false // 树1遍历结束，树1遍历还没结束
+        if (root2.val !== root1.val) return false // 存在对应节点不相等的情况
+        // 递归
+        return this.contains(root1.left, root2.left) && this.contains(root1.right, root2.right)
+    }
+
     get max() {
         return BinaryTree.maxNode(this.root)
     }
 
     get min() {
         return BinaryTree.minNode(this.root)
+    }
+
+    get diameter() {// 对于每一个结点，经过它的最长路径的长度 = 它的左子树的最大深度 + 右子树的最大深度。
+        let max = 0
+        const maxDepth = root => {
+            if (!root)
+                return 0
+            const l = maxDepth(root.left)
+            const r = maxDepth(root.right)
+            max = Math.max(max, l + r)
+            return Math.max(l, r) + 1
+        }
+        maxDepth(this.root)
+        return max
     }
 
     inOrderTraverse(cb) {
@@ -237,7 +217,7 @@ class BinaryTree {
 
     static maxNode(node) {
         if (node) {
-            while (node&& node.right) node = node.right
+            while (node && node.right) node = node.right
             return node.val
         }
         return node.val
@@ -282,6 +262,21 @@ class BinaryTree {
         const left = this.height(root.left)
         const right = this.height(root.right)
         return Math.max(left, right) + 1
+    }
+
+    /*
+    是否是对称数
+    */
+    static isSymmetric(root) {
+        if (!root) return true
+        return this._isSymmetric(root.left, root.right)
+    }
+
+    static _isSymmetric(root1, root2) {
+        if (!root1 && !root2) return true
+        if (!root1 || !root2) return false // 只有一者为空，返回false
+        if (root1.val !== root2.val) return false // 两者均不为null，两者的值不相等
+        return this._isSymmetric(root1.left, root2.right) && this._isSymmetric(root1.right, root2.left)
     }
 }
 

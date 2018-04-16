@@ -27,15 +27,33 @@ class Node {
         this.key = k
         this.value = v
         this.next = null
-        this.prev = null
+        this._prevKey = {prev: "prev"}
+        this._weakMap = new WeakMap()
+    }
+
+    get prev() {
+        this._weakMap.get(this._prevKey)
+    }
+
+    set prev(val) {
+        this._weakMap.set(this._prevKey, val)
     }
 }
 
 class DoubleLinkedList {
     constructor() {
         this._pHead = null
-        this._pTail = null
         this._size = 0
+        this._weakMap = new WeakMap()
+        this._pTailKey = {tail: "tail"}
+    }
+
+    get _pTail() {
+        return this._weakMap.get(this._pTailKey)
+    }
+
+    set _pTail(val) {
+        this._weakMap.set(this._pTailKey, val)
     }
 
     size() {

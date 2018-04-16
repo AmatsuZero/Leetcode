@@ -1,10 +1,6 @@
-const { TreeNode } = require('./BinaryTree')
+const { TreeNode, BinaryTree } = require('./BinaryTree')
 
-class BinarySearchTree {
-
-    constructor() {
-        this._root = null
-    }
+class BinarySearchTree extends BinaryTree {
 
     insert(key) {
         if (this._root == null) {
@@ -26,21 +22,6 @@ class BinarySearchTree {
         } else {
             this.insertNode(node.right, key)
         }
-    }
-
-    get root() {
-        return this._root
-    }
-
-    get height() {
-        return this._height(this._root)
-    }
-
-    _height(root) {
-        if (root === null) return -1
-        const left = this.height(root.left)
-        const right = this.height(root.right)
-        return Math.max(left, right) + 1
     }
 
     search(key) {
