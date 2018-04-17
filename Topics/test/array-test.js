@@ -23,6 +23,7 @@ const searchRange = require('../Array/SearchForRange')
 const rpn = require("../Array/EvaluateRPN")
 const anagram = require("../Array/ValidAnagram")
 const continousSubArray = require("../Array/ShortestUnsortedContinuousSubarray")
+const findMedian = require("../Array/MedianOfTwoSortedArrays")
 
 describe('Array', () => {
 
@@ -160,6 +161,12 @@ describe('Array', () => {
     describe("#子数组查找", () => {
         it("需要排序的子数组长度", () => {
             assert.ok(continousSubArray([2, 6, 4, 8, 10, 9, 15]), 5)
+        })
+    })
+
+    describe("#寻找中位数", () => {
+        it("中位数", () => {
+            assert.strictEqual(findMedian([1,3,5],[2,4]), 3)
         })
     })
 })
