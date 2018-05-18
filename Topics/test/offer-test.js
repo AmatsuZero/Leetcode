@@ -1,10 +1,12 @@
 const { assert }= require('chai')
-const {describe, it} = require('mocha')
-
-const duplicateNums = require("../剑指Offer/DuplicatedNumbers")
-const containNum = require("../剑指Offer/ContainsNumber")
-const replaceSpace = require("../剑指Offer/ReplaceSpace")
-const { preOrderWithInOrder } = require("../剑指Offer/BuildBTree")
+const {describe, it } = require('mocha')
+const {
+    duplicateNums,
+    containNum,
+    replaceSpace,
+    buildTree,
+} = require("../剑指Offer")
+const { preOrderWithInOrder } = buildTree
 const { BinaryTree } = require("../DataStructure/BinaryTree")
 
 describe("剑指Offer题目", () => {
@@ -25,6 +27,7 @@ describe("剑指Offer题目", () => {
     it("替换空格", () => {
         assert.strictEqual(replaceSpace("We Are Happy"), "We%20Are%20Happy")
     })
+
     it("构建二叉树： 前序遍历 & 后序遍历", () => {
         const head = preOrderWithInOrder([3,9,20,15,7], [9,3,15,20,7])
         BinaryTree.inOrderTraverse(head, node => console.log("当前节点值: %d\n中序下一节点: %O", node.val, node.nextInOrder))
