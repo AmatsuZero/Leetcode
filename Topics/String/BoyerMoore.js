@@ -1,4 +1,4 @@
-// 利用怀字符规则计算移动位数
+// 利用坏字符规则计算移动位数
 // 后移位数 = 坏字符的位置 - 模式串的坏字符上一次出现的位置
 const baCharacter = (pattern, barChar, badCharSuffix) => badCharSuffix - pattern.lastIndexOf(barChar, badCharSuffix)
 // 利用好后缀规则计算移动位数
