@@ -1,12 +1,16 @@
 const {describe, it} = require('mocha')
 const { assert } = require('chai')
-const { longestPalindromeLength } = require("../String/Manacher")
-const addBinary = require("../String/AddBinary")
-const basicCalculator= require("../String/BasicCalculatorII")
-const BM = require("../String/BoyerMoore")
-const Sunday = require("../String/Sunday")
-const KMP = require("../String/KMP")
-const JD = require("../String/RemoveRedundantBracket")
+const {
+    addBinary,
+    basicCalculator,
+    BoyerMoore: BM,
+    Sunday,
+    KMP,
+    Manacher,
+    IntegerToEnglish
+} = require("../String")
+const { longestPalindromeLength } = Manacher
+const JD = require("../Interview/JD/RemoveRedundantBracket")
 
 describe("字符串算法相关测试", () => {
     it("通过Manacher算法寻找最长回文子串", () => {
@@ -26,4 +30,8 @@ describe("字符串算法相关测试", () => {
         const input = "(1,2,3,(4,5),6,(7,8,9))"
         assert.strictEqual(JD(input), "(1,2,3,4,5,6,7,8,9)")
     })
+    it('数字改为英文描述',  () => {
+        assert.strictEqual(IntegerToEnglish(2147483647), "Two Billion One Hundred Forty Seven Million Four Hundred Eighty Three Thousand Six Hundred Forty Seven")
+        assert.strictEqual(IntegerToEnglish(1000000001), "One Billion One")
+    });
 })
