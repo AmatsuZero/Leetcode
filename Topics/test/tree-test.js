@@ -26,6 +26,7 @@ describe('#Tree', () => {
         tree = new BinaryTree(preInBuildTree, preorder, inorder)
     })
     it('树最大深度', () => {
+        console.log(tree.toString())
         assert.strictEqual(maxDepth(tree.root), 3)
     })
     it('树最小深度', () => {

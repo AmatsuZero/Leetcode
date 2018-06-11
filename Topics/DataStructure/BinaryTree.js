@@ -45,91 +45,14 @@ class TreeNode {
         this.left = this.right
         this.right = t
     }
-
-    toString() {
-        const printer = new TreePrinter(this, 1, 0)
-        return printer.out
-    }
 }
 
-class TreePrinter {
-    constructor(root, level, indentSpace) {
-        this._fillChar = " "
-        this.out = ""
-        let nodesIntThisLevel = 1,
-            nodesQueue = [],
-            h = BinaryTree.height(root),
-            branchLen = 2*(~~(Math.pow(2.0, h))-1) - (3-level)*~~(Math.pow(2.0,h-1)),  // eq of the length of branch for each node of each level
-            nodeSpaceLen = 2 + (level+1)*~~(Math.pow(2.0,h)),  // distance between left neighbor node's right arm and right neighbor node's left arm
-            startLen = branchLen + (3-level) + indentSpace  // starting space to the first node to print of each level (for the left most node of each level only)
-        nodesQueue.push(root)
-        for (let r = 1; r < h; r++) {
-            this.printBranches(branchLen, nodeSpaceLen, startLen, nodesIntThisLevel, nodesQueue)
-            branchLen = ~~(branchLen/2) - 1
-            nodeSpaceLen = ~~(nodeSpaceLen/2) + 1
-            startLen = branchLen + (3 - level) + indentSpace
-            this.printNodes(branchLen, nodeSpaceLen, startLen, nodesIntThisLevel, nodesQueue)
-            for (let i = 0; i < nodesIntThisLevel; i++) {
-                const currNode = nodesQueue.shift()
-                if (currNode) {
-                    nodesQueue.push(currNode.level)
-                    nodesQueue.push(currNode.right)
-                } else {
-                    nodesQueue.push(null)
-                    nodesQueue.push(null)
-                }
-            }
-            nodesIntThisLevel *= 2
-        }
-        this.printBranches(branchLen, nodeSpaceLen, startLen, nodesIntThisLevel, nodesQueue)
-        this.printLeaves(indentSpace, level, nodesIntThisLevel, nodesQueue)
+const loopPrint = (char, number) => {
+    let str = '';
+    for (let start = 0; start < number; start++) {
+        str += '_';
     }
-    setW(length) {
-        let spaces = ""
-        for(let i = 0; i < length; i++)
-            spaces += this._fillChar
-        return spaces
-    }
-
-    setFill(char) {
-        this._fillChar = char
-        return ""
-    }
-
-    printBranches(branchLen, nodeSpaceLen, startLen, nodesInThisLevel, nodesQueue) {
-        let cont = 0;
-        for (let i = 0; i < ~~(nodesInThisLevel / 2); i++) {
-            this.out += `${i === 0 ? this.setW(startLen-1) : this.setW(nodeSpaceLen-2)}${nodesQueue[cont++] ? "/" : " "}`
-            this.out += `${this.setW(2 * branchLen + 2)}${nodesQueue[cont++] ? "\\" : " "}`
-        }
-        this.out += "";
-    }
-
-    // Print the branches and node (eg, ___10___ )
-    printNodes(branchLen, nodeSpaceLen, startLen, nodeInThisLevel, nodesQueue) {
-        let count = 0
-        for (let i = 0; i < nodeInThisLevel; i++, count) {
-            let spaceAdjust = nodesQueue[count] ? `${nodesQueue[count].val}`.length : 0,
-                odd = spaceAdjust % 2 === 0 ? 1 : 0
-            spaceAdjust = ~~(spaceAdjust / 2)
-            this.out += i === 0 ? this.setW(startLen)
-                : `${this.setW(nodeSpaceLen)}${(nodesQueue[count] && nodesQueue[count].left) ? this.setFill('_') : this.setFill(" ")}`
-            this.out += this.setW(branchLen - spaceAdjust) + (nodesQueue[count] ? nodesQueue[count].val : "")
-            this.out += `${(nodesQueue[count] && nodesQueue[count].right ? this.setFill('_') : this.setFill(" "))}${this.setW(branchLen - spaceAdjust + odd)}${this.setFill(" ")}`
-        }
-        this.out += ""
-    }
-
-    printLeaves(indentSpace, level, nodesInThisLevel, nodesQueue) {
-        let cont = 0;
-        for (let i = 0; i < nodesInThisLevel; i++, cont++) {
-            let spaceAdjust = nodesQueue[cont] ? `${nodesQueue[cont].val}`.length : 0
-            spaceAdjust = spaceAdjust === 1 ? 0 : spaceAdjust - 1
-            this.out += i === 0 ? this.setW(indentSpace) : `${this.setW(2*level+1-spaceAdjust)}${nodesQueue[cont] ? nodesQueue[cont].val : ""}`
-        }
-        this.out += "";
-    }
-
+    return str
 }
 
 class BinaryTree {
@@ -277,6 +200,35 @@ class BinaryTree {
         if (!root1 || !root2) return false // 只有一者为空，返回false
         if (root1.val !== root2.val) return false // 两者均不为null，两者的值不相等
         return this._isSymmetric(root1.left, root2.right) && this._isSymmetric(root1.right, root2.left)
+    }
+
+    toString() {
+      let output = ''
+      const depth = this.height
+      for (let j = 0; j < depth; j++) {
+          const w = 1 << (depth - j + 1)
+          if (j === 0)
+              output += `${loopPrint('_', w)}\n`;
+          else {
+            for (let i = 0; i < 1 << (j-1); i++) {
+                output += `${loopPrint(' ', w+1)}`
+                for (let k = 0; k < w-3; k++)
+                    output += '_'
+                output += '/ \\'
+                for (let k = 0; k < w - 3; k++)
+                    output += '_'
+                output += loopPrint(' ', w+2)
+            }
+            output += '\n'
+            for (let i = 0; i < 1 << (j - 1); i++)
+                output += `${loopPrint('_', w)}/${loopPrint('\\', w*2-1)}_${loopPrint(' ', w)}`
+            output += '\n'
+          }
+          for (let i = 0; i < 1 << j; i++)
+              output += `${loopPrint('(', w-1)}_)${loopPrint(' ', w-1)}`
+          output += '\n'
+      }
+      return output
     }
 }
 
