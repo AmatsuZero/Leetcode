@@ -11,6 +11,7 @@ const {
 } = require('../Sort/CommonSort')
 const wilsonRank = require('../Sort/WilsonRank')
 const permutation = require("../Sort/FullPermutation")
+const countSort = require("../Sort/CountSorti")
 
 describe('#Wilson Rank', () => {
     it('#Sort by Bernoulli Distribution', () => {
@@ -72,5 +73,12 @@ describe('#Commmond Sort', () => {
     it("#全排序", () => {
         const input = [1,5,9]
         console.log(permutation(input))
+    })
+})
+
+describe('#计数排序', () => {
+    it('#计数排序', () => {
+        const input = [95, 94, 91, 98, 99, 90, 99, 93, 91, 92]
+        assert.deepStrictEqual(countSort(input), [90,91,91,92,93,94,95,98,99,99])
     })
 })
