@@ -3,7 +3,8 @@ const {describe, it} = require('mocha')
 const {
     ReverseInteger,
     RPN,
-    GCD
+    GCD,
+    SOR
 } = require("../Math")
 
 describe("数学相关", () => {
@@ -34,5 +35,14 @@ describe("数学相关", () => {
 
     it("最大公约数", () => {
         assert.strictEqual(GCD(100,150), 50)
+    })
+
+    it('SOR', () => {
+        const  A = [2, 1, 3, 4]
+        const  b = [10, 7]
+        const  x = [0, 0]
+
+        console.log(SOR(2, A, b, b, x, 1, 100, 1e-5))
+        console.log(x)
     })
 })
