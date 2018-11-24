@@ -1,6 +1,12 @@
 const { assert } = require('chai')
 const {describe, it} = require('mocha')
 const {
+    CommonSort,
+    WilsonRank,
+    FullPermutation,
+    CountSort
+} = require("../Sort")
+const {
     quickSort,
     bubbleSort,
     selectionSort,
@@ -8,10 +14,7 @@ const {
     shellSort,
     mergeSort,
     heapSort
-} = require('../Sort/CommonSort')
-const wilsonRank = require('../Sort/WilsonRank')
-const permutation = require("../Sort/FullPermutation")
-const countSort = require("../Sort/CountSorti")
+} = CommonSort
 
 describe('#Wilson Rank', () => {
     it('#Sort by Bernoulli Distribution', () => {
@@ -35,7 +38,7 @@ describe('#Wilson Rank', () => {
             {name: "grape", up: 48, down: 89},
             {name: "duran", up: 2, down: 43}
         ])
-        fruits.sort(wilsonRank('up', 'down', false)).forEach((fruit) => {
+        fruits.sort(WilsonRank('up', 'down', false)).forEach((fruit) => {
             console.log("%s (%d↑ / %d↓)", fruit.name, fruit.up, fruit.down)
         })
     })
@@ -72,13 +75,13 @@ describe('#Commmond Sort', () => {
     });
     it("#全排序", () => {
         const input = [1,5,9]
-        console.log(permutation(input))
+        console.log(FullPermutation(input))
     })
 })
 
 describe('#计数排序', () => {
     it('#计数排序', () => {
         const input = [95, 94, 91, 98, 99, 90, 99, 93, 91, 92]
-        assert.deepStrictEqual(countSort(input), [90,91,91,92,93,94,95,98,99,99])
+        assert.deepStrictEqual(CountSort(input), [90,91,91,92,93,94,95,98,99,99])
     })
 })
