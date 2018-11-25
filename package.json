@@ -7,7 +7,9 @@
     "server": "cd DocEditor && hugo server -w --buildDrafts",
     "deploy": "cd DocEditor && hugo"
   },
-  "dependencies": {},
+  "dependencies": {
+    "bitset": "^5.0.4"
+  },
   "engines": {
     "node": ">= 8.0.0"
   },
