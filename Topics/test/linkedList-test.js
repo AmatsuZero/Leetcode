@@ -1,8 +1,10 @@
 const { assert }= require('chai')
 const {describe, it} = require('mocha')
-const { LinkedList }  = require("../DataStructure/LinkedList")
-const SortedLinkedList = require("../DataStructure/SortedLinkedList")
-const addTwoNums = require("../DataStructure/AddTwoNumbers")
+const {
+    LinkedList,
+    SortedLinkedList,
+    AddTwoNumbers
+} = require("../DataStructure")
 
 describe("链表相关", () => {
     it("判断两个链表是否相交", () => {
@@ -53,7 +55,7 @@ describe("链表相关", () => {
     })
     it("排序", () => {
         const list = LinkedList.from([5,3,2,4,1])
-        assert.sameDeepOrderedMembers(list.toArray(), [1,2,3,4,5])
+        assert.sameDeepOrderedMembers(list.toArray(), [5,3,2,4,1])
     })
     it("旋转", () => {
         const list = LinkedList.from([1,2,3,4,5])
@@ -73,7 +75,7 @@ describe("链表相关", () => {
     it("两数相加", () => {
         const l1 = LinkedList.from([2,4,6])
         const l2 = LinkedList.from([5,6,4])
-        const list = addTwoNums(l1.head, l2.head)
+        const list = AddTwoNumbers(l1.head, l2.head)
         assert.sameDeepOrderedMembers(list.toArray(), [7,0,1,1])
     })
 })
